@@ -11,18 +11,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
-          <nav>
-            <ul>
-              <li><Link to="/">Accueil</Link></li>
-              <li><Link to="/odd">Les ODD en lumière</Link></li>
-              <li><Link to="/retro">Style Rétro-Gaming</Link></li>
-              <li><Link to="/green">Green Coding</Link></li>
-              <li><Link to="/badui">Bad UI Challenge</Link></li>
-              <li><Link to="/clicker">Cookie Cauchemar</Link></li>
-            </ul>
-          </nav>
-        </header>
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
