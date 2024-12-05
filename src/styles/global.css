@@ -1,0 +1,19 @@
+.retro-container {
+    font-family: 'Press Start 2P', cursive;
+    color: #00ff00;
+    background-color: black;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .retro-ocean {
+    font-size: 20px;
+    animation: wave 3s infinite;
+  }
+  
+  @keyframes wave {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+  }
+  
