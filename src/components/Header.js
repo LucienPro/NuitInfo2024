@@ -33,7 +33,7 @@ function Header() {
         padding: "20px",
         backgroundColor: "#f0f8ff",
         borderBottom: "2px solid #ddd",
-        marginBottom: "20px",
+        // marginBottom: "20px",
       }}
     >
       <Link
@@ -42,7 +42,7 @@ function Header() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        🏠 Home
+        🏠 Accueil
       </Link>
       <Link
         to="/odd"
@@ -50,7 +50,7 @@ function Header() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        🌍 ODD
+        🌍 Développement durable
       </Link>
       <Link
         to="/retro"
@@ -58,7 +58,7 @@ function Header() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        🎮 Style Rétro
+        🎮 Ecologie à l'ancienne
       </Link>
       <Link
         to="/green"
@@ -66,7 +66,7 @@ function Header() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        ♻️ Green Coding
+        ♻️ Code Vert
       </Link>
       <Link
         to="/badui"
@@ -74,7 +74,7 @@ function Header() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        💥 Bad UI
+        💥 Expérience Utilisateur
       </Link>
       <Link
         to="/clicker"
@@ -82,7 +82,7 @@ function Header() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        🍪 Cookie Clicker
+        🐟 Catch the trash
       </Link>
     </header>
   );

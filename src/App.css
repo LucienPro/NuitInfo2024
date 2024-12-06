@@ -19,3 +19,25 @@ nav ul li a {
 nav ul li a:hover {
   color: #61dafb;
 }
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header"; // Import du composant Header
+import Header from "./Header";
 
 function CookieClicker() {
   const [clicks, setClicks] = useState(0);
@@ -9,35 +9,39 @@ function CookieClicker() {
 
   useEffect(() => {
     if (clicks > 0 && clicks % 5 === 0) {
-      setMessage("Continuez, marin courageux !");
-    } else {
-      setMessage("");
+      showMessage("Continuez, marin courageux !");
     }
   }, [clicks]);
+
+  const showMessage = (newMessage, duration = 3000) => {
+    setMessage(newMessage);
+    setTimeout(() => {
+      setMessage(""); // Réinitialise le message après la durée spécifiée.
+    }, duration);
+  };
 
   const handleClick = () => {
     if (isDisabled || !isButtonVisible) return;
 
     if (Math.random() < 0.1) {
-      setClicks(clicks - 5);
-      setMessage("Oh non, une vague a emporté vos points !");
+      setClicks((prev) => Math.max(0, prev - 5)); // Empêche les points négatifs.
+      showMessage("Oh non, une vague a emporté vos points !", 5000);
     } else {
-      setClicks(clicks + 1);
-      setMessage("Bien joué, capitaine !");
+      setClicks((prev) => prev + 1);
+      showMessage("Bien joué, capitaine !");
     }
 
     if (Math.random() < 0.2) {
       setIsDisabled(true);
-      setMessage("Le bouton est bloqué par une pieuvre !");
+      showMessage("La bouteille est bloquée par une pieuvre !", 4000);
       setTimeout(() => {
         setIsDisabled(false);
-        setMessage("");
       }, Math.random() * 3000 + 1000);
     }
 
     if (Math.random() < 0.15) {
       setIsButtonVisible(false);
-      setMessage("Le bouton a plongé dans l'eau !");
+      showMessage("La bouteille a coulé dans les profondeurs !", 4000);
       setTimeout(() => {
         setIsButtonVisible(true);
       }, Math.random() * 3000 + 2000);
@@ -49,48 +53,82 @@ function CookieClicker() {
   };
 
   return (
-    <div><Header />
-    <div
-      style={{
-        textAlign: "center",
-        padding: "20px",
-        backgroundImage: "url('../../images/ocean.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        color: "#ffffff",
-        minHeight: "100vh",
-      }}
-    >
-      <h2>Chasse aux Perles</h2>
-      {isButtonVisible && (
-        <button
-          onClick={handleClick}
-          disabled={isDisabled}
+    <div>
+      <div
+        style={{
+          textAlign: "center",
+          backgroundImage: "url('../../images/Ocean_Background.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          color: "#ffffff",
+          height: "100vh",
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <Header />
+        <h2>Chasse aux déchets</h2>
+        <h4>
+          Attrape la bouteille si tu la trouves, il se peut qu'il y ait des
+          péripéties dans ton aventure
+        </h4>
+        <p>Défi : Cookie Cauchemar by CAPGEMINI PAU</p>
+        {isButtonVisible && (
+          <button
+            onClick={handleClick}
+            disabled={isDisabled}
+            style={{
+              position: "absolute",
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              background: "url('../../images/Bottle_Trash.png') no-repeat center",
+              backgroundSize: "contain",
+              border: "none",
+              width: "100px",
+              height: "150px",
+              cursor: "pointer",
+            }}
+          >
+            {/* Bouton interactif */}
+          </button>
+        )}
+
+        {/* Compteur stylisé */}
+        <div
           style={{
-            position: "absolute",
-            left: `${Math.random() * 90}%`,
-            top: `${Math.random() * 90}%`,
-            transform: `scale(${Math.random() * 0.5 + 0.75})`,
-            background: "url('../../images/poisson.png') no-repeat center",
-            backgroundSize: "cover",
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
             borderRadius: "50%",
-            border: "2px solid #ffffff",
-            width: "120px",
-            height: "60px",
+            width: "50px",
+            height: "50px",
+            margin: "20px auto",
             display: "flex",
-            alignItems: "center",
             justifyContent: "center",
-            fontSize: "20px",
+            alignItems: "center",
+            fontSize: "1.2rem",
             fontWeight: "bold",
-            textShadow: "1px 1px 2px rgba(0, 0, 0, 0.8)",
+            color: "White",
+            animation: "pulse 1.5s infinite",
           }}
         >
           {clicks}
-        </button>
-      )}
-      <p style={{ color: "black" }}>Nombre de clics : {clicks}</p>
-      {message && <p>{message}</p>}
-    </div>
+        </div>
+
+        {/* Message stylisé */}
+        {message && (
+          <p
+            style={{
+              color: "#FFD700",
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+              marginTop: "20px",
+              animation: "fadein 1s",
+            }}
+          >
+            {message}
+          </p>
+        )}
+      </div>
+
     </div>
   );
 }

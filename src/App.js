@@ -7,6 +7,7 @@ import GreenCoding from "./components/GreenCoding";
 import BadUI from "./components/BadUI";
 import CookieClicker from "./components/CookieClicker";
 
+
 function App() {
   return (
     <Router>

@@ -1,134 +1,179 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header"; // Import du composant Header
+import Footer from "./Footer"; // Import du composant Footer
 
 function GreenCoding() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [showSummary, setShowSummary] = useState(false);
+
+  const adventureSteps = [
+    {
+      title: "Commencez votre voyage Green Coding",
+      description: "Vous êtes un développeur audacieux, prêt à réduire l'empreinte carbone numérique.",
+      action: "Cliquez pour continuer votre mission.",
+    },
+    {
+      title: "Évitez les pièges énergivores",
+      description: "Minifiez votre code CSS/JS pour éviter les lourdeurs inutiles.",
+      action: "Cliquez sur le bouton pour compresser les ressources.",
+    },
+    {
+      title: "Optimisez les images",
+      description: "Vos images sont trop lourdes ! Compression nécessaire pour réduire l'impact.",
+      action: "Appuyez ici pour utiliser un outil comme TinyPNG.",
+    },
+    {
+      title: "Réduisez les requêtes réseau",
+      description: "Mettez en cache les ressources pour minimiser les allers-retours inutiles.",
+      action: "Configurez votre cache dès maintenant.",
+    },
+    {
+      title: "Supprimez le code mort",
+      description: "Identifiez et supprimez les fichiers ou lignes de code inutilisés.",
+      action: "Nettoyez votre projet.",
+    },
+    {
+      title: "Allégez votre design",
+      description: "Adoptez un design minimaliste qui utilise moins de ressources.",
+      action: "Simplifiez vos interfaces.",
+    },
+    {
+      title: "Adoptez des pratiques d’audit",
+      description: "Analysez vos performances pour identifier les points à optimiser.",
+      action: "Lancez un audit avec Lighthouse.",
+    },
+    {
+      title: "Choisissez un hébergement éco-responsable",
+      description: "Passez à un hébergeur utilisant des énergies renouvelables.",
+      action: "Changez d'hébergeur.",
+    },
+    {
+      title: "Sensibilisez votre équipe",
+      description: "Expliquez les principes du Green Coding à vos collègues.",
+      action: "Partagez vos connaissances.",
+    },
+    {
+      title: "Félicitations !",
+      description: "Vous avez terminé votre parcours Green Coding et contribué à un numérique plus durable.",
+      action: "Retournez au début pour explorer à nouveau.",
+    },
+  ];
+
+  const handleNextStep = () => {
+    if (currentStep < adventureSteps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      setCurrentStep(0); // Réinitialise à la première étape
+      setShowSummary(true); // Affiche le récapitulatif
+    }
+  };
+
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <Header />
-      <div style={{ padding: "20px", fontFamily: "Arial, sans-serif", lineHeight: "1.6" }}>
+      <div
+        style={{
+          flex: "1",
+          padding: "20px",
+          fontFamily: "Arial, sans-serif",
+          lineHeight: "1.6",
+        }}
+      >
+        {/* Introduction */}
         <section style={{ textAlign: "center", marginBottom: "40px" }}>
           <h1 style={{ color: "#007bff", fontSize: "2.5rem" }}>Pratiques de Green Coding</h1>
-          <p style={{ maxWidth: "800px", margin: "0 auto", fontSize: "1.2rem", color: "#555" }}>
-            Nous avons conçu cette application en respectant les principes du <strong>Green Coding</strong>, afin de réduire son impact environnemental tout en optimisant ses performances. Découvrez comment nous avons intégré ces pratiques pour un numérique responsable.
+          <p
+            style={{
+              maxWidth: "800px",
+              margin: "0 auto",
+              fontSize: "1.2rem",
+              color: "#555",
+            }}
+          >
+            Nous avons conçu cette application en respectant les principes du <strong>Green Coding</strong>, afin de
+            réduire son impact environnemental tout en optimisant ses performances. Découvrez comment nous avons intégré
+            ces pratiques pour un numérique responsable.
           </p>
+          <p>Défi : La Menace Fantôme de l'Empreinte Carbone by CGI FRANCE</p>
         </section>
 
-        {/* Exemples concrets */}
-        <section style={{ marginBottom: "50px" }}>
-          <h2 style={{ color: "#333", textAlign: "center" }}>Exemples Concrets d'Impact</h2>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
-            <div style={cardStyle}>
-              <h3 style={cardTitleStyle}>Compression des Images</h3>
-              <p>
-                Les images de l'application ont été compressées pour réduire leur taille, passant de <strong>10 Mo</strong> à seulement <strong>2 Mo</strong>.
-              </p>
-              <p style={highlightStyle}>
-                Impact : Économie de <strong>80 %</strong> sur la bande passante.
-              </p>
-            </div>
-            <div style={cardStyle}>
-              <h3 style={cardTitleStyle}>Optimisation des API</h3>
-              <p>
-                Les appels API ont été regroupés et mis en cache, réduisant de <strong>30 %</strong> le nombre total de requêtes réseau.
-              </p>
-              <p style={highlightStyle}>
-                Impact : Réduction des émissions de CO₂ liées au trafic réseau.
-              </p>
-            </div>
-            <div style={cardStyle}>
-              <h3 style={cardTitleStyle}>Temps de Chargement</h3>
-              <p>
-                Grâce à des techniques de minification du code, le temps de chargement est passé de <strong>2,5 secondes</strong> à <strong>1,2 secondes</strong> sur mobile.
-              </p>
-              <p style={highlightStyle}>
-                Impact : Amélioration de l'accessibilité pour les utilisateurs.
-              </p>
-            </div>
+        {/* Aventure Green Coding */}
+        <section style={{ textAlign: "center", marginTop: "40px" }}>
+          <h2 style={{ color: "#28a745", fontSize: "2rem" }}>
+            Entrez dans l'Aventure Green Coding
+          </h2>
+          <div
+            style={{
+              marginTop: "20px",
+              padding: "20px",
+              borderRadius: "10px",
+              backgroundColor: "#f0f8ff",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+              maxWidth: "600px",
+              margin: "0 auto",
+            }}
+          >
+            <h3 style={{ color: "#007bff" }}>{adventureSteps[currentStep].title}</h3>
+            <p style={{ color: "#555", fontSize: "1rem", margin: "20px 0" }}>
+              {adventureSteps[currentStep].description}
+            </p>
+            <button
+              onClick={handleNextStep}
+              style={{
+                padding: "10px 20px",
+                backgroundColor: "#007bff",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                fontSize: "1rem",
+                transition: "background-color 0.3s",
+              }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#0056b3")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#007bff")}
+            >
+              {adventureSteps[currentStep].action}
+            </button>
           </div>
         </section>
 
-        {/* Lien avec le Livre Blanc */}
-        <section style={{ marginBottom: "50px", textAlign: "center" }}>
-          <h2 style={{ color: "#333" }}>Lien avec le Livre Blanc de CGI</h2>
-          <p style={{ maxWidth: "800px", margin: "0 auto", fontSize: "1rem", color: "#555" }}>
-            Le <strong>Livre Blanc de CGI</strong> propose des pratiques pour un numérique responsable. Voici comment nous avons intégré leurs recommandations :
-          </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
-            <div style={cardStyle}>
-              <h3 style={cardTitleStyle}>Sobriété Numérique</h3>
-              <p>
-                Limitation des ressources utilisées en optimisant les images, en réduisant le code et en minimisant les calculs serveur.
-              </p>
+        {/* Récapitulatif */}
+        {showSummary && (
+          <section style={{ marginTop: "60px" }}>
+            <h2 style={{ textAlign: "center", color: "#007bff" }}>Résumé de votre aventure Green Coding</h2>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                gap: "20px",
+                marginTop: "20px",
+              }}
+            >
+              {adventureSteps.slice(0, -1).map((step, index) => (
+                <div key={index} style={summaryTileStyle}>
+                  <h3 style={{ color: "#28a745" }}>{step.title}</h3>
+                  <p style={{ color: "#555", fontSize: "0.9rem" }}>{step.description}</p>
+                </div>
+              ))}
             </div>
-            <div style={cardStyle}>
-              <h3 style={cardTitleStyle}>Effet Multiplicateur</h3>
-              <p>
-                Chaque optimisation (même mineure) contribue significativement à réduire l'empreinte carbone numérique globale.
-              </p>
-            </div>
-            <div style={cardStyle}>
-              <h3 style={cardTitleStyle}>Sensibilisation</h3>
-              <p>
-                Informer les utilisateurs sur les pratiques responsables, comme le vidage de cache ou la réduction des téléchargements inutiles.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Actions pour aller plus loin */}
-        <section>
-          <h2 style={{ color: "#333", textAlign: "center" }}>Comment Adopter le Green Coding ?</h2>
-          <p style={{ maxWidth: "800px", margin: "0 auto", fontSize: "1rem", color: "#555", textAlign: "center" }}>
-            Voici quelques actions concrètes pour intégrer le Green Coding dans vos projets :
-          </p>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", marginTop: "20px" }}>
-            <div style={actionStyle}>
-              <h3 style={cardTitleStyle}>Compressez vos Images</h3>
-              <p>
-                Utilisez des outils comme <strong>TinyPNG</strong> ou <strong>ImageOptim</strong> pour réduire la taille de vos images sans perte de qualité.
-              </p>
-            </div>
-            <div style={actionStyle}>
-              <h3 style={cardTitleStyle}>Optimisez votre Code</h3>
-              <p>
-                Supprimez les lignes inutilisées, minifiez vos fichiers CSS/JS et utilisez des outils comme <strong>Webpack</strong>.
-              </p>
-            </div>
-            <div style={actionStyle}>
-              <h3 style={cardTitleStyle}>Utilisez un Audit</h3>
-              <p>
-                Analysez vos performances avec <strong>Lighthouse</strong> ou <strong>EcoIndex</strong> pour identifier les axes d'amélioration.
-              </p>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
       </div>
+      <Footer />
     </div>
   );
 }
 
-// Styles pour les cartes et actions
-const cardStyle = {
+// Styles pour les tuiles récapitulatives
+const summaryTileStyle = {
   border: "1px solid #ddd",
   borderRadius: "10px",
-  padding: "20px",
+  padding: "15px",
   backgroundColor: "#f9f9f9",
-  width: "300px",
+  width: "250px",
+  textAlign: "center",
   boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-  transition: "transform 0.2s ease",
-};
-const cardTitleStyle = {
-  color: "#007bff",
-  fontSize: "1.5rem",
-  marginBottom: "10px",
-};
-const highlightStyle = {
-  color: "#28a745",
-  fontWeight: "bold",
-};
-const actionStyle = {
-  ...cardStyle,
-  backgroundColor: "#e6f7ff",
 };
 
 export default GreenCoding;
